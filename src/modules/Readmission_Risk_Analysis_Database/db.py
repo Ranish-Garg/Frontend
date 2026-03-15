@@ -169,3 +169,5 @@ def _create(db, name, schema):
     except CollectionInvalid:
         # Collection already exists — update validator
         db.command("collMod", name, validator={"$jsonSchema": schema})
+
+# Change by Ranish-Garg on Sun Mar 15 22:06:00 2026 +0530
