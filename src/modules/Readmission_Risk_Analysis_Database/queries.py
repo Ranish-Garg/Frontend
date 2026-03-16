@@ -64,3 +64,5 @@ def get_readmission_rate_summary():
         {"$sort": {"count": -1}}
     ]
     return list(db.risk_scores.aggregate(pipeline))
+
+# Change by pokasireesha2303 on Mon Mar 16 18:22:00 2026 +0530
