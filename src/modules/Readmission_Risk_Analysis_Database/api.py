@@ -296,3 +296,5 @@ def _trigger_risk_score(readmission: dict):
             "risk_category": category,
             "risk_calculation_date": datetime.today().strftime("%Y-%m-%d")
         })
+
+# Change by PrathamandX on Tue Mar 17 14:22:00 2026 +0530
