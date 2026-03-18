@@ -2,6 +2,7 @@
 import streamlit as st
 from components.sidebar import sidebar
 from components.charts import patient_line_chart, appointment_donut_chart
+from src.modules.Readmission_Risk_Analysis_Database.ui import readmission_module_ui
 
 # All categories and their modules
 CATEGORIES = {
@@ -148,15 +149,18 @@ def patient_dashboard():
         "I - Integrated Capstone Projects"
     ])
 
-    # Handle sidebar selection
-    if selected != "Dashboard" and selected in CATEGORIES:
-        st.session_state.selected_category = selected
-        st.session_state.view = "category"
-        st.session_state.selected_module = None
-    elif selected == "Dashboard":
-        st.session_state.view = "main"
-        st.session_state.selected_category = None
-        st.session_state.selected_module = None
+    # Handle sidebar selection — only react when user explicitly changes it
+    prev_selected = st.session_state.get("_sidebar_prev", "Dashboard")
+    if selected != prev_selected:
+        st.session_state["_sidebar_prev"] = selected
+        if selected != "Dashboard" and selected in CATEGORIES:
+            st.session_state.selected_category = selected
+            st.session_state.view = "category"
+            st.session_state.selected_module = None
+        elif selected == "Dashboard":
+            st.session_state.view = "main"
+            st.session_state.selected_category = None
+            st.session_state.selected_module = None
 
     # ROUTER
     if st.session_state.view == "category":
@@ -359,6 +363,16 @@ def show_category_view():
 
 def show_module_detail():
     code, name, desc, tables, records = st.session_state.selected_module
+
+    # F4 — Readmission Risk Analysis: use real DB-connected UI
+    if code == "F4":
+        readmission_module_ui()
+        st.divider()
+        if st.button("⬅ Back to Modules"):
+            st.session_state.view = "category"
+            st.rerun()
+        return
+
     cat_key = st.session_state.selected_category
     
     # Breadcrumb
