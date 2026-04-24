@@ -1,9 +1,12 @@
 # F4 — Readmission Risk Analysis Database
 
 **Module 34 | Category F: Case-Based Clinical Decision Support**  
-**Student:** Prathamesh S. Vispute | 24JE0674  
-             Ranish Garg | 24JE0682
-             Poka Sireesha | 24JE0671
+**Student:**
+Prathamesh S. Vispute | 24JE0674 
+
+ Ranish Garg | 24JE0682
+
+Poka Sireesha | 24JE0671
              
 **Database:** MongoDB Atlas  
 
